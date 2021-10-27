@@ -1,0 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.card{
+    min-height: 30vh;
+    width: 18vw;
+}
+
+.cardContent{
+    display: flex;
+    flex-wrap: nowrap;
+}
