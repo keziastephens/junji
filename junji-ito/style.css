@@ -5,6 +5,21 @@
     text-decoration: none;
 }
 
+.search-container{
+    display: flex;
+    padding: 1rem;
+}
+
+.search-icon{
+    pointer-events: none;
+    font-size: 1.5rem;
+    padding: 0.5;
+}
+
+#searchFilter{
+    cursor: pointer;
+}
+
 .card{
     min-height: 30vh;
     width: 18vw;
@@ -12,5 +27,6 @@
 
 .cardContent{
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
 }
+

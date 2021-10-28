@@ -1,4 +1,7 @@
 console.log('i am linked');
+const searchFilter = document.querySelector('#searchFilter')
+const yearFilter = document.querySelector("#yearFilter")
+
 
 let objectArray = [
     {
@@ -9,7 +12,9 @@ let objectArray = [
         price: '$79.99',
         release: 'old',
         popularity: 'high',
-        year: '1997'
+        date: '1997',
+        year: 'nineties',
+        tags: ['tomie', 'tome']
     },
     {
         id: 'ji-remina',
@@ -19,7 +24,9 @@ let objectArray = [
         price: '$49.99',
         release: 'old',
         popularity: 'low',
-        year: '2005'
+        date: '2005',
+        year: 'thousands',
+        tags: ['remina', 'hellstar', 'hellstar remina']
     },
     {
         id: 'ji-sensor',
@@ -29,7 +36,9 @@ let objectArray = [
         price: '$49.99',
         release: 'new',
         popularity: 'high',
-        year: '2021'
+        date: '2021',
+        year: 'twenties',
+        tags: ['sensor', 'sense']
     },
     {
         id: 'ji-gyo',
@@ -39,7 +48,9 @@ let objectArray = [
         price: '$59.99',
         release: 'old',
         popularity: 'high',
-        year: '2004'
+        date: '2004',
+        year: 'thousands',
+        tags: ['gyo', 'gy']
     },
     {
         id: 'ji-foh',
@@ -49,7 +60,9 @@ let objectArray = [
         price: '$39.99',
         release: 'old',
         popularity: 'low',
-        year: '2014'
+        date: '2014',
+        year: 'tens',
+        tags: ['fragments', 'horror', 'fragments of horror', 'fragments of']
     },
     {
         id: 'ji-uzumaki',
@@ -59,7 +72,9 @@ let objectArray = [
         price: '$79.99',
         release: 'old',
         popularity: 'high',
-        year: '2001'
+        date: '2001',
+        year: 'thousands',
+        tags: ['uzumaki', 'uzamaki']
     },
     {
         id: 'ji-deserter',
@@ -69,7 +84,9 @@ let objectArray = [
         price: '$39.99',
         release: 'new',
         popularity: 'low',
-        year: '2021'
+        date: '2021',
+        year: 'twenties',
+        tags: ['deserter', 'desert']
     },
     {
         id: 'ji-frankenstein',
@@ -79,7 +96,9 @@ let objectArray = [
         price: '$59.99',
         release: 'new',
         popularity: 'high',
-        year: '2018'
+        date: '2018',
+        year: 'tens',
+        tags: ['franken', 'frankenstein', 'frank']
     },
     {
         id: 'ji-dc',
@@ -89,7 +108,9 @@ let objectArray = [
         price: '$39.99',
         release: 'old',
         popularity: 'high',
-        year: '2014'
+        date: '2014',
+        year: 'tens',
+        tags: ['classroom', 'dissolving classroom', 'dissolving']
     },
     {
         id: 'ji-shiver',
@@ -99,7 +120,9 @@ let objectArray = [
         price: '$45.99',
         release: 'old',
         popularity: 'high',
-        year: '2015'
+        date: '2015',
+        year: 'tens',
+        tags: ['shiver', 'shivering']
     },
     {
         id: 'ji-lovesickness',
@@ -109,7 +132,9 @@ let objectArray = [
         price: '$35.99',
         release: 'new',
         popularity: 'low',
-        year: '2021'
+        date: '2021',
+        year: 'twenties',
+        tags: ['lovesickness', 'lovesick', 'love']
     },
     {
         id: 'ji-smashed',
@@ -119,7 +144,9 @@ let objectArray = [
         price: '$45.99',
         release: 'new',
         popularity: 'high',
-        year: '2019'
+        date: '2019',
+        year: 'tens',
+        tags: ['smashed', 'smash']
     },
     {
         id: 'ji-venus',
@@ -129,7 +156,9 @@ let objectArray = [
         price: '$39.99',
         release: 'new',
         popularity: 'high',
-        year: '2020'
+        date: '2020',
+        year: 'twenties',
+        tags: ['venus', 'venus in', 'venus in the', 'venus in the blindspot']
     },
     {
         id: 'ji-blackparadox',
@@ -139,7 +168,9 @@ let objectArray = [
         price: '$29.99',
         release: 'old',
         popularity: 'low',
-        year: '2009'
+        date: '2009',
+        year: 'thousands',
+        tags: ['black', 'paradox', 'black paradox']
     },
     {
         id: 'ji-fleshcolored',
@@ -149,7 +180,9 @@ let objectArray = [
         price: '$19.99',
         release: 'old',
         popularity: 'low',
-        year: '2001'
+        date: '2001',
+        year: 'thousands',
+        tags: ['flesh', 'horror', 'colored', 'flesh colored horror']
     }
 ];
 
@@ -181,6 +214,8 @@ function modal(){
 
 };
 
+modal();
+
 
 
 
@@ -194,23 +229,181 @@ function objectArrayCards(){
 
     let i = 0;
     for(i = 0; i < objectArray.length; i++){
-        $('#cardContent').append(
-            `
-            <div class="card" style="width: 18rem;">
-                <img src="${objectArray[i].image}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">${objectArray[i].title}</h5>
+        generateCard(i);
+        // $('#cardContent').append(
+        //     `
+        //     <div class="card" style="width: 18rem;">
+        //         <img src="${objectArray[i].image}" class="card-img-top" alt="...">
+        //         <div class="card-body">
+        //             <h5 class="card-title">${objectArray[i].title}</h5>
 
-                    <p class="card-text">${objectArray[i].price}</p>
+        //             <p class="card-text">${objectArray[i].price}</p>
 
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                    See More
-                    </button>
-                </div>
-            </div>
-            `
-        )
+        //             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        //             See More
+        //             </button>
+        //         </div>
+        //     </div>
+        //     `
+        // );
     }
+
+    modal();
 }
 
 objectArrayCards();
+
+
+
+// start of genre filter function
+
+function filterYear(event){
+    $('#cardContent').empty();
+    event.preventDefault();
+    let selectedYears = [];
+    // start of value check
+    console.log(selectedYears);
+    $('input[name="year"]:checked').each( function(){
+        selectedYears.push(this.value);
+        
+    });
+    console.log(selectedYears);
+    // end of value check
+    let i = 0;
+    // start of selected year loop
+    for(i = 0; i < selectedYears.length; i++){
+
+        if(selectedYears[i] === "nineties"){
+            let i = 0;
+            for(i = 0; i < objectArray.length; i++){
+                // start of if statement
+                // check to see if the year is equal
+                if(objectArray[i].year === "nineties"){
+                    generateCard(i);
+                }
+            }
+        }
+
+        if(selectedYears[i] === "thousands"){
+            let i = 0;
+            for(i = 0; i < objectArray.length; i++){
+                // start of if statement
+                // check to see if the year is equal
+                if(objectArray[i].year === "thousands"){
+                    generateCard(i);
+                }
+            }
+        }
+
+        if(selectedYears[i] === "tens"){
+            let i = 0;
+            for(i = 0; i < objectArray.length; i++){
+                // start of if statement
+                // check to see if the year is equal
+                if(objectArray[i].year === "tens"){
+                    generateCard(i);
+                }
+            }
+        }
+
+        if(selectedYears[i] === "twenties"){
+            let i = 0;
+            for(i = 0; i < objectArray.length; i++){
+                // start of if statement
+                // check to see if the year is equal
+                if(objectArray[i].year === "twenties"){
+                    generateCard(i);
+                }
+            }
+        }
+    }
+    if(selectedYears < 1){
+        noInput();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ---------------------------
+// start of search function
+
+
+function filterSearchWord(){
+
+    // the prop() method sets or returns properties and values of selected elements
+    $('input[type=checkbox]').prop('checked', false);
+    console.log('clicked');
+    let searchWord = $('#searchWord').val();
+    console.log(searchWord);
+    filterByWord(searchWord);
+    $('input[name=search]').val('');
+};
+let word = searchWord;
+
+function filterByWord(word){
+    console.log(word);
+    $('#cardContent').empty();
+    let i,j;
+    for(i =0; i<objectArray.length; i++){
+        for(j = 0; j<objectArray[i].tags.length; j++){
+            // the toLowerCase() function turns string characters to lower case
+            if(word.toLowerCase() === objectArray[i].tags[j]){
+                generateCard(i);
+                modal();
+            }
+        }
+    }
+    if(word === ''){
+        noInput();
+    }
+}
+
+function noInput(){
+    for(let i = 0; i < objectArray.length; i++){
+        generateCard(i);
+    }
+}
+
+
+
+
+
+//-----------------------------
+// start of card generator
+
+function generateCard(x){
+
+    $('#cardContent').append(
+        `
+        <div class="card" style="width: 18rem;">
+            <img src="${objectArray[x].image}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">${objectArray[x].title}</h5>
+
+                <p class="card-text">${objectArray[x].price}</p>
+
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                See More
+                </button>
+            </div>
+        </div>
+        `
+    );
+    modal();
+};
+// end of card generator
+// ----------------------------
+
+yearFilter.addEventListener("click", filterYear)
+searchFilter.addEventListener("click", filterSearchWord)
