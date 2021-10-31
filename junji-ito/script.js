@@ -1,7 +1,8 @@
 console.log('i am linked');
-const searchFilter = document.querySelector('#searchFilter')
-const yearFilter = document.querySelector("#yearFilter")
-
+const searchFilter = document.querySelector('#searchFilter');
+const yearFilter = document.querySelector("#yearFilter");
+const radioFilter = document.querySelector("#radioBtn");
+// const refreshButton = document.querySelector('#refresh')
 
 let objectArray = [
     {
@@ -125,16 +126,28 @@ let objectArray = [
         tags: ['shiver', 'shivering']
     },
     {
-        id: 'ji-lovesickness',
-        title: 'Lovesickness',
-        image: './img/lovesickness.jpg',
+        id: 'ji-lovesick',
+        title: 'Lovesick Dead',
+        image: './img/lovesickdead.jpg',
         info: 'Ryusuke returns to the town he once lived in because rumors are swirling about girls killing themselves after encountering a bewitchingly handsome young man. Harboring his own secret from time spent in this town, Ryusuke attempts to capture the beautiful boy and close the case, but a lot of things go down...',
         price: '$35.99',
-        release: 'new',
+        release: 'old',
         popularity: 'low',
-        date: '2021',
-        year: 'twenties',
-        tags: ['lovesickness', 'lovesick', 'love']
+        date: '1996',
+        year: 'nineties',
+        tags: ['lovesick dead', 'lovesick', 'love', 'dead']
+    },    
+    {
+        id: 'ji-nolongerhuman',
+        title: 'No Longer Human',
+        image: './img/human.jpg',
+        info: 'Plagued by a maddening anxiety, the terrible disconnect between his own concept of happiness and the joy of the rest of the world, Yozo Oba plays the clown in his dissolute life, holding up a mask for those around him as he spirals ever downward, locked arm-in-arm with death.',
+        price: '$79.99',
+        release: 'new',
+        popularity: 'high',
+        date: '2019',
+        year: 'tens',
+        tags: ['human', 'no longer human', 'no longer', 'no', 'longer']
     },
     {
         id: 'ji-smashed',
@@ -183,7 +196,32 @@ let objectArray = [
         date: '2001',
         year: 'thousands',
         tags: ['flesh', 'horror', 'colored', 'flesh colored horror']
-    }
+    },
+    {
+        id: 'ji-twisted',
+        title: 'The Art of Junji Ito: Twisted Visions',
+        image: './img/twistedvisions.jpg',
+        info: 'A first-ever collection of Junji Ito’s artworks, featuring over 130 images from his bestselling manga titles along with rare works. This sublime collection includes all of Ito’s unforgettable illustrations in both black-and-white and color, from Tomie’s dreadful beauty to the inhuman spirals of Uzumaki. Includes an interview focused on Ito’s art technique as well as commentary from the artist on each work.',
+        price: '$59.99',
+        release: 'new',
+        popularity: 'high',
+        date: '2020',
+        year: 'twenties',
+        tags: ['twisted visions', 'twisted', 'visions', 'art of junji ito', 'art', 'junji ito']
+    },
+    {
+        id: 'ji-souichi',
+        title: 'Souichis Diary of Curses',
+        image: './img/souichi.jpg',
+        info: 'Souichi is a troublemaking 5th grader. He was raised primarily by his grandmother, and is the black sheep of his family. Due to a lack of iron in his blood, he sucks on nails and holds them in his mouth. He also has the ability to shoot them out of his mouth like darts. He causes a lot of trouble with his friends and family and dabbles in voodoo.',
+        price: '$29.99',
+        release: 'old',
+        popularity: 'low',
+        date: '1996',
+        year: 'nineties',
+        tags: ['souichi', 'curses', 'souichis diary of curses', 'diary of curses', 'diary', 'diary of curses']
+    },
+
 ];
 
 // end of object array
@@ -202,10 +240,10 @@ function modal(){
                     <h5>${objectArray[i].title}</h5>
                     `
                 );
-                $('#modalBody').empty().append(
+                $('#objectArrayModalInfo').empty().append(
                     `
-                    <img class = "objectArrayModalImage" src="${objectArray[i].photo}" alt=""></img>
-
+                    <img class = "objectArrayModalImage" id="modalPhoto" src="${objectArray[i].photo}" alt="">
+                    <p class="modal-paragraph" id="modalParagraph">${objectArray[i].info}</p>
                     `
                 )
             };
@@ -319,15 +357,145 @@ function filterYear(event){
     }
     if(selectedYears < 1){
         noInput();
+    };
+    modal();
+};
+
+
+// -------------------------------
+// start of radio search function
+
+function radioSearch(event){
+    $('#cardContent').empty();
+    event.preventDefault();
+
+    let popularity = document.querySelector('input[name="popularity"]:checked').value
+    console.log(popularity);
+
+    let i = 0;
+    for(i = 0; i < objectArray.length; i++){
+        if(popularity === 'high')
+        {
+            $('#cardContent').append(
+                `
+                <div class="card" style="width: 18rem;">
+                    <img src="${objectArray[i].image}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${objectArray[i].title}</h5>
+        
+                        <p class="card-text">${objectArray[i].price}</p>
+        
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        See More
+                        </button>
+                    </div>
+                </div>
+                `
+            )
+        };
+    };
+
+    // let selectedPopularity = [];
+    // $('input[name="popularity"]:checked').each(function(){
+    //     selectedPopularity.push(this.value);
+    // });
+    // console.log(selectedPopularity)
+    // // end of value check
+
+        
+    // $('#cardContent').empty();
+    // event.preventDefault();
+    // let selectedRelease = [];
+    // $('input[name="release"]:checked').each(function(){
+    //     selectedRelease.push(this.value);
+    // });
+    // console.log(selectedRelease)
+    // // end of value check
+
+    // modal(); 
+};
+
+
+
+
+
+
+// end of radio search function
+// -------------------------------
+
+
+
+// -------------------------------
+// start of alphabetical sort
+
+$('#sortBtn').change(function(){
+    let sortValue = ($('#sortBtn').val()).toLowerCase();
+    console.log(sortValue);
+    if((sortValue === 'title') || (sortValue === 'date') || (sortValue === 'price')){
+        sortByAscending(sortValue);
     }
+});
+
+function sortByAscending(sortOrder){
+
+        console.log(sortOrder);
+
+        objectArray.sort(function(a,b){
+
+            switch(sortOrder){
+                case 'title':
+                  var itemA = a.title.toLowerCase(), itemB = b.title.toLowerCase();
+                    break;
+                case 'date':
+                    console.log('date');
+                    var itemA = a.date.toLowerCase(), itemB = b.date.toLowerCase();
+                    break;
+                case 'price':
+                    console.log('price');
+                    var itemA = a.price.toLowerCase(), itemB = b.price.toLowerCase();
+                    break;
+                default:
+                    console.log('not matching');
+            };
+
+            if(itemA < itemB){
+                return -1;
+                // false
+            }
+            if(itemA > itemB){
+                return 1;
+                // true
+            }
+        });
+
+        console.log(objectArray);
+        allCards();
+        modal();
+};
+    
+
+
+$('#refresh').click(function(){
+    $('cardContent').empty();
+    $('input[type=checkbox]').prop('checked',false);
+    allCards();
+});
+
+
+function allCards(){
+$('#cardContent').empty();
+for(let i =0; i <objectArray.length; i++){
+    generateCard(i);
 }
+};
 
 
 
 
 
 
-
+// end of alphabetical sort
+// -------------------------------
 
 
 
@@ -348,6 +516,8 @@ function filterSearchWord(){
     console.log(searchWord);
     filterByWord(searchWord);
     $('input[name=search]').val('');
+
+    modal();
 };
 let word = searchWord;
 
@@ -363,17 +533,19 @@ function filterByWord(word){
                 modal();
             }
         }
-    }
+    };
     if(word === ''){
         noInput();
-    }
-}
+    };
+    modal();
+};
 
 function noInput(){
     for(let i = 0; i < objectArray.length; i++){
         generateCard(i);
     }
-}
+    modal();
+};
 
 
 
@@ -407,3 +579,5 @@ function generateCard(x){
 
 yearFilter.addEventListener("click", filterYear)
 searchFilter.addEventListener("click", filterSearchWord)
+radioBtn.addEventListener("click", radioSearch)
+// refreshButton.addEventListener("click", a)

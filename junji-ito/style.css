@@ -5,16 +5,93 @@
     text-decoration: none;
 }
 
+.header{
+    height: 25vh;
+    width: 100vw;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;    
+}
+
+select{
+    padding: 0.3rem;
+}
+
+.navigation{
+    background: black;
+    width: 80vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav-p{
+    font-size: 1.5rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    cursor: pointer;
+}
+
+.search-btn{
+    padding: 0.2rem;
+    border: none;
+    border-radius: 0.3rem;
+}
+
+.logo{
+    cursor: pointer;
+}
+
+.radio-label{
+    color: white;
+}
+
+.filter-label{
+    color: white;
+    padding-left: 1rem;
+}
+
+.javascript-navigation{
+    background: black;
+    display: flex;
+    height: 10vh;
+    width: 100vw;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .search-container{
     display: flex;
-    padding: 1rem;
+    padding: 0.5rem;
+    background: black;
+    border: 1px solid white;
+    border-radius: 0.5rem;
+}
+
+.search-icon{
+    color: white;
+}
+
+.search-box{
+    border: none;
+    border-right: 1px solid white;
+    background: black;
+}
+
+.search-box::placeholder{
+    color: white;
 }
 
 .search-icon{
     pointer-events: none;
     font-size: 1.5rem;
     padding: 0.5;
+    margin-left: 0.6rem;
 }
+
+
 
 #searchFilter{
     cursor: pointer;
@@ -23,10 +100,59 @@
 .card{
     min-height: 30vh;
     width: 18vw;
+    margin: 1rem;
+}
+
+.outer-card{
+    background: brown;
+    padding-left: 10rem;
+    padding-right: 10rem;
+    
+}
+
+@media only screen and (max-width: 600px){
+    .outer-card{
+        padding-left: 0rem;
+        padding-right: 0rem;
+    }
+}
+@media only screen and (max-width: 955px){
+    .outer-card{
+        padding-left: 0rem;
+        padding-right: 0rem;
+    }
 }
 
 .cardContent{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    background: black;
 }
 
+.card-img-top{
+    height: 30vh;
+}
+
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.btn-primary{
+    background: rgb(108, 206, 11);
+    border: none;
+}
+
+
+
+.footer-section{
+    height: 30vh;
+    width: 100vw;
+    background: rgb(24, 24, 24);
+
+}

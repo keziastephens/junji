@@ -35,69 +35,98 @@
   </head>
   <body>
 
+    <header class="header">
+      <nav class="navigation">
+        <p class="nav-p">Home</p>
+        <img class="logo" src="./img/junji-logo.png" alt="">
+        <p class="nav-p">Cart</p>
+      </nav>
+    </header>
 
 
 
-
+    <div class="javascript-navigation">
     <!-- start of year filter -->
 
-    <form action="">
+      <form action="">
 
-      <label for="year">1990s</label>
-      <input type="checkbox" name="year" value="nineties">
+        <label for="year" class="filter-label">1990s</label>
+        <input type="checkbox" name="year" value="nineties">
+        
+        <label for="year" class="filter-label">2000s</label>
+        <input type="checkbox" name="year" value="thousands">
+
+        <label for="year" class="filter-label">2010s</label>
+        <input type="checkbox" name="year" value="tens">
+
+        <label for="year" class="filter-label">2020s</label>
+        <input type="checkbox" name="year" value="twenties">
+
+        <button id="yearFilter" class="year-btn search-btn" type="submit">Filter Search</button>
+
+      </form>
+
+
+      <!-- end of year filter -->
+
+
+
+
+      <!-- radio search start -->
+
+      <form id="radioForm" action="">
+        <input type="radio" name="popularity" value="high">
+        <label for="popularity" class="radio-label">Best Selling Releases</label>
+
+        <input type="radio" name="release" value="new">        
+        <label for="release" class="radio-label">Recent Releases</label>
+
+        <button id="radioBtn" class="radio-btn search-btn" type="submit">Search</button>
+
+      </form>
       
-      <label for="year">2000s</label>
-      <input type="checkbox" name="year" value="thousands">
 
-      <label for="year">2010s</label>
-      <input type="checkbox" name="year" value="tens">
-
-      <label for="year">2020s</label>
-      <input type="checkbox" name="year" value="twenties">
-
-      <button id="yearFilter" type="submit">Filter Search</button>
-
-    </form>
-
-
-    <!-- end of year filter -->
+      <!-- radio search end -->
 
 
 
+      <!-- start of sort -->
+      <div>
+        <select name="" id="sortBtn">
+          <option value="">Sort By</option>
+          <option value="title">A-Z</option>
+          <option value="date">Year</option>
+          <option value="price">Price</option>
 
-    <!-- radio search start -->
+          
 
-    <form action="">
-      <label for="popularity">Best Selling Releases</label>
-      <input type="radio" name="popularity" value="high">
+        </select>
 
-      <label for="release">Recent Releases</label>
-      <input type="radio" name="release" value="new">
-    </form>
+        <button class="search-btn" id="refresh">Refresh</button>
+      </div>
 
-    <!-- radio search end -->
-
-
-
-
-    
-    <!-- start of search container -->
-
-    <div class="search-container">
-      <input type="text" name="search" value="" id="searchWord" placeholder="Search">
-      <div id="searchFilter"><i class="fas fa-search search-icon"></i></div>
-    </div>
-
-    <!-- end of search container -->
+      <!-- end of sort -->
 
 
+      
+      <!-- start of search container -->
+
+      <div class="search-container">
+        <input type="text" name="search" value="" id="searchWord" class="search-box" placeholder="Search">
+        <div id="searchFilter"><i class="fas fa-search search-icon"></i></div>
+      </div>
+
+      <!-- end of search container -->
+
+  </div>
 
 
 
 
     <!-- start of cards -->
-    <div class="cardContent" id="cardContent"></div>
-
+    <div class="outer-card">
+      <div class="cardContent" id="cardContent"></div>
+    </div>
 
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -106,7 +135,8 @@
               <h5 class="modal-title" id="staticBackdropLabel"></h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div id="objectArrayModalInfo" class="modal-body">
+              ...
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -116,6 +146,14 @@
         </div>
       </div>
 
+      <!-- end of cards -->
+
+
+
+
+      <section class="footer-section">
+        <footer></footer>
+      </section>
 
 
 
