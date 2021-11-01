@@ -235,18 +235,22 @@ function modal(){
         let i = 0;
         for(i = 0; i < objectArray.length; i++){
             if((this.id) == objectArray[i].id){
-                $('#staticBackdropLabel').empty().append(
+                $('#modalHeader').empty().append(
                     `
-                    <h5>${objectArray[i].title}</h5>
+                    <h3 class="modal-header__title">${objectArray[i].title}</h3>
+                    <h4>${objectArray[i].price}</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     `
                 );
 
                 $('#objectArrayModalInfo').empty().append(
                     `
                     <img class = "objectArrayModalImage" id="modalPhoto" src="${objectArray[i].image}" alt="">
+                    <br><br>
                     <p class="modal-paragraph" id="modalParagraph">${objectArray[i].info}</p>
                     `
-                )
+                );
+
             };
         };
     });
@@ -391,10 +395,11 @@ function radioSearch(event){
                     <img src="${objectArray[i].image}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">${objectArray[i].title}</h5>
+                        <p class="card-date">${objectArray[x].date}</p>
         
-                        <p class="card-text">${objectArray[i].price}</p>
+                        <p class="card-text">${objectArray[x].price}</p>
         
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <button id=${objectArray[x].id} type="button" class="btn btn-primary book-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         See More
                         </button>
                     </div>
@@ -416,10 +421,11 @@ function radioSearch(event){
                     <img src="${objectArray[i].image}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">${objectArray[i].title}</h5>
+                        <p class="card-date">${objectArray[i].date}</p>
         
                         <p class="card-text">${objectArray[i].price}</p>
         
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <button id=${objectArray[i].id} type="button" class="btn btn-primary book-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         See More
                         </button>
                     </div>
@@ -511,14 +517,12 @@ function sortByAscending(sortOrder){
 };
     
 
-
 $('#refresh').click(function(){
     console.log('#refresh')
-   $('#cardContent').empty();
+$('#cardContent').empty();
     // $('input[type=checkbox]').prop('checked',false);
-   allCards();
+allCards();
 });
-
 
 function allCards(){
     $('#cardContent').empty();
@@ -597,14 +601,13 @@ function noInput(){
 // start of card generator
 
 function generateCard(x){
-    console.log('generateCard')
-
     $('#cardContent').append(
         `
         <div class="card" style="width: 18rem;">
             <img src="${objectArray[x].image}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">${objectArray[x].title}</h5>
+                <p class="card-date">${objectArray[x].date}</p>
 
                 <p class="card-text">${objectArray[x].price}</p>
 

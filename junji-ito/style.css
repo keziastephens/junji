@@ -132,6 +132,7 @@ a{
     background: black;
     padding-left: 10rem;
     padding-right: 10rem;
+    overflow-y: hidden;
     
 }
 
@@ -153,6 +154,7 @@ a{
     flex-wrap: wrap;
     justify-content: center;
     background: black;
+    overflow-y: hidden;
 }
 
 .card-img-top{
@@ -167,6 +169,30 @@ a{
     align-items: center;
 }
 
+.modal-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-title{
+    font-weight: 650;   
+}
+
+.card-date{
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.modal-header__title{
+    padding-right: 1rem;
+}
+
+.objectArrayModalImage{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 .btn-primary{
     background: rgb(206, 11, 11);
