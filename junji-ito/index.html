@@ -37,9 +37,9 @@
 
     <header class="header">
       <nav class="navigation">
-        <p class="nav-p">Home</p>
-        <img class="logo" src="./img/junji-logo.png" alt="">
-        <p class="nav-p">Cart</p>
+        <a href="index.html"><p class="nav-p">Home</p></a>
+        <a href="index.html"><img class="logo" src="./img/junji-logo.png" alt=""></a>
+        <a href="index.html"><p class="nav-p">Cart</p></a>
       </nav>
     </header>
 
@@ -50,17 +50,17 @@
 
       <form action="">
 
-        <label for="year" class="filter-label">1990s</label>
         <input type="checkbox" name="year" value="nineties">
+        <label for="year" class="filter-label">1990s</label>
         
-        <label for="year" class="filter-label">2000s</label>
         <input type="checkbox" name="year" value="thousands">
-
-        <label for="year" class="filter-label">2010s</label>
+        <label for="year" class="filter-label">2000s</label>
+        
         <input type="checkbox" name="year" value="tens">
+        <label for="year" class="filter-label">2010s</label>
 
-        <label for="year" class="filter-label">2020s</label>
         <input type="checkbox" name="year" value="twenties">
+        <label for="year" class="filter-label">2020s</label>
 
         <button id="yearFilter" class="year-btn search-btn" type="submit">Filter Search</button>
 
@@ -78,7 +78,7 @@
         <input type="radio" name="popularity" value="high">
         <label for="popularity" class="radio-label">Best Selling Releases</label>
 
-        <input type="radio" name="release" value="new">        
+        <input type="radio" name="popularity" value="new">        
         <label for="release" class="radio-label">Recent Releases</label>
 
         <button id="radioBtn" class="radio-btn search-btn" type="submit">Search</button>
@@ -92,7 +92,7 @@
 
       <!-- start of sort -->
       <div>
-        <select name="" id="sortBtn">
+        <select name="" id="sortBtn" class="select-btn">
           <option value="">Sort By</option>
           <option value="title">A-Z</option>
           <option value="date">Year</option>
@@ -127,6 +127,9 @@
     <div class="outer-card">
       <div class="cardContent" id="cardContent"></div>
     </div>
+
+
+
 
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">

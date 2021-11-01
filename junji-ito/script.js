@@ -2,7 +2,7 @@ console.log('i am linked');
 const searchFilter = document.querySelector('#searchFilter');
 const yearFilter = document.querySelector("#yearFilter");
 const radioFilter = document.querySelector("#radioBtn");
-// const refreshButton = document.querySelector('#refresh')
+const refreshButton = document.querySelector("#refresh")
 
 let objectArray = [
     {
@@ -231,18 +231,19 @@ let objectArray = [
 
 function modal(){
 
-    $('.btn-primary').click(function(){
+    $('.book-button').click(function(){
         let i = 0;
         for(i = 0; i < objectArray.length; i++){
-            if(parseInt(this.id) === objectArray[i].id){
+            if((this.id) == objectArray[i].id){
                 $('#staticBackdropLabel').empty().append(
                     `
                     <h5>${objectArray[i].title}</h5>
                     `
                 );
+
                 $('#objectArrayModalInfo').empty().append(
                     `
-                    <img class = "objectArrayModalImage" id="modalPhoto" src="${objectArray[i].photo}" alt="">
+                    <img class = "objectArrayModalImage" id="modalPhoto" src="${objectArray[i].image}" alt="">
                     <p class="modal-paragraph" id="modalParagraph">${objectArray[i].info}</p>
                     `
                 )
@@ -250,11 +251,13 @@ function modal(){
         };
     });
 
+
+    
 };
 
 modal();
 
-
+// end of modal
 
 
 
@@ -292,7 +295,7 @@ function objectArrayCards(){
 objectArrayCards();
 
 
-
+// ------------------------------
 // start of genre filter function
 
 function filterYear(event){
@@ -361,6 +364,12 @@ function filterYear(event){
     modal();
 };
 
+// end of genre filter function
+// ------------------------------
+
+
+
+
 
 // -------------------------------
 // start of radio search function
@@ -374,7 +383,32 @@ function radioSearch(event){
 
     let i = 0;
     for(i = 0; i < objectArray.length; i++){
-        if(popularity === 'high')
+        if(popularity === objectArray[i].popularity)
+        {
+            $('#cardContent').append(
+                `
+                <div class="card" style="width: 18rem;">
+                    <img src="${objectArray[i].image}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${objectArray[i].title}</h5>
+        
+                        <p class="card-text">${objectArray[i].price}</p>
+        
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        See More
+                        </button>
+                    </div>
+                </div>
+                `
+            )
+        };
+    };
+
+    
+    let release = document.querySelector('input[name="popularity"]:checked').value
+
+    for(i = 0; i < objectArray.length; i++){
+        if(release === objectArray[i].release)
         {
             $('#cardContent').append(
                 `
@@ -412,16 +446,19 @@ function radioSearch(event){
     // console.log(selectedRelease)
     // // end of value check
 
-    // modal(); 
+    modal(); 
 };
-
-
-
 
 
 
 // end of radio search function
 // -------------------------------
+
+
+
+
+
+
 
 
 
@@ -476,26 +513,27 @@ function sortByAscending(sortOrder){
 
 
 $('#refresh').click(function(){
-    $('cardContent').empty();
-    $('input[type=checkbox]').prop('checked',false);
-    allCards();
+    console.log('#refresh')
+   $('#cardContent').empty();
+    // $('input[type=checkbox]').prop('checked',false);
+   allCards();
 });
 
 
 function allCards(){
-$('#cardContent').empty();
-for(let i =0; i <objectArray.length; i++){
-    generateCard(i);
-}
+    $('#cardContent').empty();
+    for(let i =0; i <objectArray.length; i++){
+        console.log(objectArray[i].title)
+
+        generateCard(i);
+    }
 };
-
-
-
-
 
 
 // end of alphabetical sort
 // -------------------------------
+
+
 
 
 
@@ -547,6 +585,10 @@ function noInput(){
     modal();
 };
 
+// end of search function
+// ---------------------------
+
+
 
 
 
@@ -555,6 +597,7 @@ function noInput(){
 // start of card generator
 
 function generateCard(x){
+    console.log('generateCard')
 
     $('#cardContent').append(
         `
@@ -565,7 +608,7 @@ function generateCard(x){
 
                 <p class="card-text">${objectArray[x].price}</p>
 
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <button id=${objectArray[x].id} type="button" class="btn btn-primary book-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 See More
                 </button>
             </div>
@@ -577,7 +620,15 @@ function generateCard(x){
 // end of card generator
 // ----------------------------
 
+
+
+
+
+
+
+// event listeners
+
 yearFilter.addEventListener("click", filterYear)
 searchFilter.addEventListener("click", filterSearchWord)
-radioBtn.addEventListener("click", radioSearch)
+radioFilter.addEventListener("click", radioSearch)
 // refreshButton.addEventListener("click", a)
